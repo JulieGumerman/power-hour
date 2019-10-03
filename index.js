@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 
-const port = process.env.PORT || 3333;
+const port = process.env.PORT || 9999;
 
 const server = express();
 
@@ -36,5 +36,19 @@ let mountains = [
 ]
 
 server.get("/api/mountains", (req, res) => {
+    res.json(mountains);
+})
+
+server.post("/api/mountains", (req, res) => {
+    const { town, resort } = req.body;
+    const newMountain = {town, resort, id: itemId};
+    if (!town || !resort) {
+        res.status(404).json({ message: "please complete the info"})
+    } else {
+        res.json(req.body);
+    }
+
+    mountains.push(newMountain);
+    itemId++;
     res.json(mountains);
 })
