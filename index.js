@@ -1,8 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 
-// const port = process.env.NODE_PORT || 3333;
-const port = 3333;
+const port = process.env.PORT || 3333;
+
 const server = express();
 
 server.use(express.json());
@@ -15,6 +15,7 @@ server.get("/", (req, res) => {
     res.send("Winter is coming!")
 })
 
+let itemId = 12;
 
 let mountains = [
     {
